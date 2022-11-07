@@ -20,6 +20,7 @@
                 <th scope="col">Penerbit</th>
                 <th scope="col">Tahun Terbit</th>
                 <th scope="col">Sinopsis</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -30,6 +31,10 @@
                     <td><?= $data['penerbit'] ?></td>
                     <td><?= $data['th_terbit_buku'] ?></td>
                     <td><?= $data['sinopsis'] ?></td>
+                    <td>
+                        <a class="btn btn-warning" href="edit.php?id_buku=<?=$data['id_buku']?>">Edit</a>
+                        <a class="btn btn-danger" href="remove.php">Delete</a>
+                    </td>
                 </tr>
             <?php endforeach ?>
         </tbody>

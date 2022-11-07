@@ -24,9 +24,31 @@ function show()
     return $query;
 }
 
-function create()
+function create($data)
+
+
 {
+    $judulbuku = $data["judulbuku"];
+    $penerbit = $data["penerbit"];
+    $th_terbit = $data["th_terbit"];
+    $sinopsis = $data["sinopsis"];
     global $conn;
-    $query = mysqli_query($conn, "INSERT INTO(judul_buku,penerbit_sinopsis,th_terbit_buku) VALUES ()");
+    $query = mysqli_query($conn, "INSERT INTO buku (judul_buku,penerbit,sinopsis,th_terbit_buku) VALUES ('$judulbuku','$penerbit','$sinopsis','$th_terbit')");
+    return $query;
+
+}
+
+function edit($data,$id){
+    // var_dump($id);
+    // die;
+   
+    $judulbuku = $data["judulbuku"];
+    $penerbit = $data["penerbit"];
+    $th_terbit = $data["th_terbit"];
+    $sinopsis = $data["sinopsis"];
+    global $conn;
+    $query = mysqli_query($conn, "UPDATE buku SET judul_buku = '{$judulbuku}', penerbit = '{$penerbit}', sinopsis = '{$sinopsis}', th_terbit_buku = {$th_terbit} WHERE id_buku=$id");
     return $query;
 }
+
+

@@ -1,3 +1,11 @@
+<?php 
+include_once 'config.php';
+if (isset($_POST['submit'])){
+    create($_POST);
+    header('location:index.php');
+}
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -18,6 +26,7 @@
         <input type="text" name="th_terbit">
         <label for="sinopsis">Sinopsis</label>
         <input type="text" name="sinopsis">
+        <button class = "mt-4" type="submit" name="submit">Submit</button>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
