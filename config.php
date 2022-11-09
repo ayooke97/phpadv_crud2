@@ -51,4 +51,11 @@ function edit($data,$id){
     return $query;
 }
 
+function remove($id){
+    global $conn;
+    $query = mysqli_query($conn, "DELETE FROM buku WHERE id_buku = $id");
+    return $query;
+}
+
+
 
