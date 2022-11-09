@@ -1,11 +1,10 @@
 <?php 
 include_once 'config.php';
-$id =  $_GET['id_buku'];
+$id =  base64_decode($_GET['id_buku'],1);
 $query = mysqli_query($conn,"SELECT * FROM buku WHERE id_buku=$id");
 $result = mysqli_fetch_assoc($query);
 // var_dump($result);
 
-include_once 'config.php';
 if (isset($_POST['submit'])){
     edit($_POST,$id);
     header('location:index.php');

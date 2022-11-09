@@ -20,7 +20,7 @@ try {
 function show()
 {
     global $conn;
-    $query = mysqli_query($conn, "SELECT * FROM buku");
+    $query = mysqli_query($conn, "SELECT * FROM buku ORDER BY judul_buku ASC");
     return $query;
 }
 
