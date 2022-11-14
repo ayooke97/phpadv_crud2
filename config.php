@@ -9,7 +9,7 @@ $conn = mysqli_connect($host, $username, $pass, $db);
 
 try {
     if ($conn) {
-        echo '<p class = "fw-semibold">Koneksi berhasil</p>';
+        // echo '<p class = "fw-semibold">Koneksi berhasil</p>';
     } else {
         throw new Exception('Koneksi Gagal');
     }
@@ -17,10 +17,14 @@ try {
     echo $e->getMessage();
 }
 
-function show()
+function show($data ="judul_buku")
 {
     global $conn;
-    $query = mysqli_query($conn, "SELECT * FROM buku ORDER BY judul_buku ASC");
+    if ($data == ""){
+        $data = "judul_buku";
+    }
+    // var_dump($data);
+    $query = mysqli_query($conn, "SELECT * FROM buku ORDER BY {$data} ASC");
     return $query;
 }
 
