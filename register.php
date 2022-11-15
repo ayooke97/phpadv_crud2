@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+
+<?php
+include_once 'config.php';
+if (isset($_POST['submit'])) {
+}
+?>
 <html lang="en">
 
 <head>
@@ -12,32 +18,41 @@
 <body>
     <div class="container">
         <div class="card">
-            <div class="card-body">
-                <form action="" method="post" class="d-flex flex-column w-25">
+            <div class="card-header">
+                <h5>Register</h5>
+            </div>
+            <div class="card-body justify-content-center">
+                <form action="" method="post" class="d-flex flex-column">
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" name="username" value="" class="form-control">              
+                        <input type="text" name="username" value="" class="form-control">
                     </div>
                     <div class="form-group">
-                    <label for="pass">Password</label>
-                    <input type="text" name="pass" value="">
+                        <label for="pass">Password</label>
+                        <input type="text" name="pass" value="" class="form-control">
                     </div>
-                    <label for="pass">Password</label>
-                    <input type="text" name="pass" value="">
-                    <label for="fname">First Name</label>
-                    <input type="text" name="fname" value="">
-                    <label for="mname">Middle Name<sub>(optional)</sub></label>
-                    <input type="text" name="mname" value="">
-                    <label for="lname">Last Name</label>
-                    <input type="text" name="sinopsis" value="">
-                    <label for="jk" name="jk">Gender</label>
-                    <div class="d-flex gap-2">
-                        <input type="radio" name="lk" id="" value="Laki-Laki">
-                        <label for="lk">Male</label>
-                        <input type="radio" name="pr" id="" value="Perempuan">
-                        <label for="pr">Female</label>
-                        <input type="radio" name="sc" id="" value="Rahasia">
-                        <label for="sc">Secret</label>
+                    <div class="form-group">
+                        <label for="fname">First Name</label>
+                        <input type="text" name="fname" value="" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="mname">Middle Name<sub>(optional)</sub></label>
+                        <input type="text" name="mname" value="" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="lname">Last Name</label>
+                        <input type="text" name="sinopsis" value="" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="jk" name="jk">Gender</label>
+                        <div class="d-flex gap-2">
+                            <input type="radio" name="jk" id="lk" value="Laki-Laki">
+                            <label for="lk">Male</label>
+                            <input type="radio" name="jk" id="pr" value="Perempuan">
+                            <label for="pr">Female</label>
+                            <input type="radio" name="jk" id="sc" value="Rahasia">
+                            <label for="sc">Secret</label>
+                        </div>
                     </div>
 
                     <button class="mt-4" type="submit" name="submit">Submit</button>

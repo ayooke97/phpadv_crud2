@@ -17,10 +17,10 @@ try {
     echo $e->getMessage();
 }
 
-function show($data ="judul_buku")
+function show($data = "judul_buku")
 {
     global $conn;
-    if ($data == ""){
+    if ($data == "") {
         $data = "judul_buku";
     }
     // var_dump($data);
@@ -39,13 +39,13 @@ function create($data)
     global $conn;
     $query = mysqli_query($conn, "INSERT INTO buku (judul_buku,penerbit,sinopsis,th_terbit_buku) VALUES ('$judulbuku','$penerbit','$sinopsis','$th_terbit')");
     return $query;
-
 }
 
-function edit($data,$id){
+function edit($data, $id)
+{
     // var_dump($id);
     // die;
-   
+
     $judulbuku = $data["judulbuku"];
     $penerbit = $data["penerbit"];
     $th_terbit = $data["th_terbit"];
@@ -55,11 +55,23 @@ function edit($data,$id){
     return $query;
 }
 
-function remove($id){
+function remove($id)
+{
     global $conn;
     $query = mysqli_query($conn, "DELETE FROM buku WHERE id_buku = $id");
     return $query;
 }
 
-
-
+function register($data)
+{
+    $id = $data["id"];
+    $username = $data["username"];
+    $pass = $data["pass"];
+    $fname = $data["first_name"];
+    $mname = $data["mid_name"];
+    $lname = $data["last_name"];
+    $jk = $data["jk"];
+    $email = $data["email"];
+    global $conn;
+    $query = mysqli_query($conn, "INSERT INTO user (id,username,pass,fname,mname,lname,jk,email) VALUES ('$id','$username','$pass','$fname','$mname','$lname','$jk','$email')");
+}
