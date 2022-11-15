@@ -38,3 +38,15 @@ INSERT INTO `buku` VALUES (2, 'B', 'aijwojsafncsa', 'tidak ada', 2018);
 INSERT INTO `buku` VALUES (6, 'B', 'asjsfkwfkjc', 'tidak ada', 2015);
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+CREATE TABLE `user` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `email` varchar(100) NOT NULL,
+ `password` varchar(100) NOT NULL,
+ `first_name` char(50) NOT NULL,
+ `mid_name` char(50) DEFAULT NULL,
+ `last_name` char(50) NOT NULL,
+ `jk` enum('Laki-Laki','Perempuan','Rahasia') NOT NULL,
+ `username` varchar(25) NOT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
