@@ -27,16 +27,20 @@ if (isset($_POST['submit'])) {
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <form action="" method="post" class="">
-                    <label for="Judulbuku">Judul Buku</label>
-                    <input type="text" name="judulbuku" value="<?= $result['judul_buku'] ?>">
-                    <label for="penerbit">Penerbit</label>
-                    <input type="text" name="penerbit" value="<?= $result['penerbit'] ?>">
+                <form actionc="" method="post" class="">
+                    <div class="form-group">
+                        <label for="Judulbuku">Judul Buku</label>
+                        <input type="text" name="judulbuku" value="<?= $result['judul_buku'] ?>" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="penerbit">Penerbit</label>
+                        <input type="text" name="penerbit" value="<?= $result['penerbit'] ?>" class="form-control">
+                    </div>
                     <label for="th_terbit">Tahun</label>
-                    <input type="text" name="th_terbit" value="<?= $result['th_terbit_buku'] ?>">
+                    <input type="text" name="th_terbit" value="<?= $result['th_terbit_buku'] ?>" class="form-control">
                     <label for="sinopsis">Sinopsis</label>
-                    <input type="text" name="sinopsis" value="<?= $result['sinopsis'] ?>">
-                    <button class="mt-4" type="submit" name="submit">Submit</button>
+                    <textarea name="sinopsis" id="" cols="" rows="10" class="form-control"><?= $result['sinopsis'] ?></textarea>
+                    <button class="mt-4 btn btn-success btn-block" type="submit" name="submit">Submit</button>
                 </form>
             </div>
         </div>

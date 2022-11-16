@@ -1,9 +1,10 @@
 <?php
 
 include_once 'config.php';
-$query = mysqli_query($conn, "SELECT * FROM buku ORDER BY judul_buku ASC");
-$sort = $_GET['sort'];
-$data = show($sort);
+
+// $query = mysqli_query($conn, "SELECT * FROM buku WHERE penerbit LIKE '%{$data}%' OR sinopsis LIKE '%{$data}%' OR judul_buku LIKE '%{$data}%' OR id_buku LIKE '%{$data}%'");
+$search = $_GET['search'];
+$data = search($search);
 $no = 1;
 
 foreach ($data as $d) : ?>

@@ -64,14 +64,30 @@ function remove($id)
 
 function register($data)
 {
-    $id = $data["id"];
     $username = $data["username"];
     $pass = $data["pass"];
-    $fname = $data["first_name"];
-    $mname = $data["mid_name"];
-    $lname = $data["last_name"];
+    $fname = $data["fname"];
+    $mname = $data["mname"];
+    $lname = $data["lname"];
     $jk = $data["jk"];
     $email = $data["email"];
     global $conn;
-    $query = mysqli_query($conn, "INSERT INTO user (id,username,pass,fname,mname,lname,jk,email) VALUES ('$id','$username','$pass','$fname','$mname','$lname','$jk','$email')");
+    $check = mysqli_query($conn, "SELECT * FROM user WHERE email= '$email'");
+    if (mysqli_num_rows($check) > 0) {
+        echo "<script>alert('email sudah terdaftar')</script>";
+        $_SESSION['value_input'] = $data;
+        // var_dump($_SESSION);
+    } else {
+        $query = mysqli_query($conn, "INSERT INTO user (id,username,password,first_name,mid_name,last_name,jk,email) VALUES ('','$username','$pass','$fname','$mname','$lname','$jk','$email')");
+        $_SESSION[] = '';
+        return $query;
+    }
+}
+
+function search($data)
+{
+
+    global $conn;
+    $query = mysqli_query($conn, "SELECT * FROM buku WHERE penerbit LIKE '%{$data}%' OR sinopsis LIKE '%{$data}%' OR judul_buku LIKE '%{$data}%' OR id_buku LIKE '%{$data}%'");
+    return $query;
 }

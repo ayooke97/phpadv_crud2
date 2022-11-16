@@ -3,6 +3,10 @@
 <?php
 include_once 'config.php';
 if (isset($_POST['submit'])) {
+    $data = register($_POST);
+}
+if (isset($_SESSION['value_input'])) {
+    $value_input = $_SESSION['value_input'];
 }
 ?>
 <html lang="en">
@@ -28,8 +32,12 @@ if (isset($_POST['submit'])) {
                         <input type="text" name="username" value="" class="form-control">
                     </div>
                     <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" name="email" value="<?= isset($value_input['email']) ? $value_input['email'] : '' ?>" class="form-control">
+                    </div>
+                    <div class="form-group">
                         <label for="pass">Password</label>
-                        <input type="text" name="pass" value="" class="form-control">
+                        <input type="password" name="pass" value="" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="fname">First Name</label>
@@ -41,7 +49,7 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="form-group">
                         <label for="lname">Last Name</label>
-                        <input type="text" name="sinopsis" value="" class="form-control">
+                        <input type="text" name="lname" value="" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="jk" name="jk">Gender</label>
