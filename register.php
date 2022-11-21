@@ -40,6 +40,10 @@ if (isset($_SESSION['value_input'])) {
                         <input type="password" name="pass" value="" class="form-control">
                     </div>
                     <div class="form-group">
+                        <label for="rpass">Re-enter Password</label>
+                        <input type="password" name="rpass" value="" class="form-control">
+                    </div>
+                    <div class="form-group">
                         <label for="fname">First Name</label>
                         <input type="text" name="fname" value="" class="form-control">
                     </div>

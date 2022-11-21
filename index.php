@@ -19,8 +19,6 @@ if (isset($_POST['btn_search'])) {
     // var_dump($_POST);
     // die;
 }
-
-
 ?>
 <html lang="en">
 

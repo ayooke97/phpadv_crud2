@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+if (isset($_POST['submit'])) {
+}
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,14 +19,15 @@
         <div class="card">
             <div class="card-body">
                 <form action="" method="post" class="">
-                    <label for="Judulbuku">Judul Buku</label>
-                    <input type="text" name="judulbuku" value="<?= $result['judul_buku'] ?>">
-                    <label for="penerbit">Penerbit</label>
-                    <input type="text" name="penerbit" value="<?= $result['penerbit'] ?>">
-                    <label for="th_terbit">Tahun</label>
-                    <input type="text" name="th_terbit" value="<?= $result['th_terbit_buku'] ?>">
-                    <label for="sinopsis">Sinopsis</label>
-                    <input type="text" name="sinopsis" value="<?= $result['sinopsis'] ?>">
+                    <div class="form-group">
+                        <label for="username">Username or Email</label>
+                        <input type="text" name="username" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="pass">Password</label>
+                        <input type="password" name="pass" value="">
+                    </div>
+
                     <button class="mt-4" type="submit" name="submit">Submit</button>
                 </form>
             </div>

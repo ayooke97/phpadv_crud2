@@ -64,25 +64,51 @@ function remove($id)
 
 function register($data)
 {
-    $username = $data["username"];
-    $pass = $data["pass"];
+    global $conn;
+    $username = strtolower(stripslashes($data["username"]));
+    $pass = mysqli_real_escape_string($conn, $data["pass"]);
+    $rpass = mysqli_real_escape_string($conn, $data["rpass"]);
+
     $fname = $data["fname"];
     $mname = $data["mname"];
     $lname = $data["lname"];
     $jk = $data["jk"];
     $email = $data["email"];
-    global $conn;
-    $check = mysqli_query($conn, "SELECT * FROM user WHERE email= '$email'");
+
+    if ($pass !== $rpass) {
+        echo "<script>alert('Password tidak sesuai')</script>";
+    }
+
+    $pass = password_hash($pass, PASSWORD_DEFAULT);
+
+    $check = mysqli_query($conn, "SELECT * FROM user WHERE email= '$email' OR password= '$pass'");
     if (mysqli_num_rows($check) > 0) {
         echo "<script>alert('email sudah terdaftar')</script>";
         $_SESSION['value_input'] = $data;
         // var_dump($_SESSION);
     } else {
-        $query = mysqli_query($conn, "INSERT INTO user (id,username,password,first_name,mid_name,last_name,jk,email) VALUES ('','$username','$pass','$fname','$mname','$lname','$jk','$email')");
+        $query = mysqli_query($conn, "INSERT INTO user (id,username,password,first_name,mid_name,last_name,jk,email) 
+        VALUES ('','$username','$pass','$fname','$mname','$lname','$jk','$email')");
         $_SESSION[] = '';
         return $query;
     }
 }
+
+function login($info)
+{
+
+    $username = $info['username'];
+    $pass = $info['pass'];
+
+    global $conn;
+    $query = mysqli_query($conn, "SELECT * FROM user WHERE email='$username' OR username='$username'");
+    if (mysqli_num_rows($query) > 0) {
+        $row = mysqli_fetch_assoc($query);
+        password_verify($pass, $row['pass']);
+        header("location: index.php");
+    }
+}
+
 
 function search($data)
 {
