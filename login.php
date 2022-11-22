@@ -2,7 +2,12 @@
 <html lang="en">
 
 <?php
+include_once 'config.php';
 if (isset($_POST['submit'])) {
+    login($_POST);
+}
+if (isset($_SESSION['login'])) {
+    $login = $_SESSION['login'];
 }
 ?>
 
@@ -21,14 +26,14 @@ if (isset($_POST['submit'])) {
                 <form action="" method="post" class="">
                     <div class="form-group">
                         <label for="username">Username or Email</label>
-                        <input type="text" name="username" value="">
+                        <input type="text" name="username" value="<?= isset($login['username']) ? $login['username'] : '' ?>" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="pass">Password</label>
-                        <input type="password" name="pass" value="">
+                        <input type="password" name="pass" value="" class="form-control">
                     </div>
 
-                    <button class="mt-4" type="submit" name="submit">Submit</button>
+                    <button class="mt-4 btn btn-primary" type="submit" name="submit">Submit</button>
                 </form>
             </div>
         </div>

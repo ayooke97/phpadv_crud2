@@ -8,6 +8,11 @@ if (isset($_POST['submit'])) {
 if (isset($_SESSION['value_input'])) {
     $value_input = $_SESSION['value_input'];
 }
+if (isset($value_input['jk'])) {
+    $jk = $value_input['jk'];
+} else {
+    $jk = '';
+}
 ?>
 <html lang="en">
 
@@ -29,7 +34,7 @@ if (isset($_SESSION['value_input'])) {
                 <form action="" method="post" class="d-flex flex-column">
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" name="username" value="" class="form-control">
+                        <input type="text" name="username" value="<?= isset($value_input['username']) ? $value_input['username'] : '' ?>" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="email">E-mail</label>
@@ -45,29 +50,29 @@ if (isset($_SESSION['value_input'])) {
                     </div>
                     <div class="form-group">
                         <label for="fname">First Name</label>
-                        <input type="text" name="fname" value="" class="form-control">
+                        <input type="text" name="fname" value="<?= isset($value_input['fname']) ? $value_input['fname'] : '' ?>" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="mname">Middle Name<sub>(optional)</sub></label>
-                        <input type="text" name="mname" value="" class="form-control">
+                        <input type="text" name="mname" value="<?= isset($value_input['mname']) ? $value_input['mname'] : '' ?>" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="lname">Last Name</label>
-                        <input type="text" name="lname" value="" class="form-control">
+                        <input type="text" name="lname" value="<?= isset($value_input['lname']) ? $value_input['lname'] : '' ?>" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="jk" name="jk">Gender</label>
                         <div class="d-flex gap-2">
-                            <input type="radio" name="jk" id="lk" value="Laki-Laki">
+                            <input type="radio" name="jk" id="lk" value="Laki-Laki" <?= ($jk == 'Laki-Laki') ? 'checked' : '' ?>>
                             <label for="lk">Male</label>
-                            <input type="radio" name="jk" id="pr" value="Perempuan">
+                            <input type="radio" name="jk" id="pr" value="Perempuan" <?= ($jk == 'Perempuan') ? 'checked' : '' ?>>
                             <label for="pr">Female</label>
-                            <input type="radio" name="jk" id="sc" value="Rahasia">
+                            <input type="radio" name="jk" id="sc" value="Rahasia" <?= ($jk == 'Rahasia') ? 'checked' : '' ?>>
                             <label for="sc">Secret</label>
                         </div>
                     </div>
 
-                    <button class="mt-4" type="submit" name="submit">Submit</button>
+                    <button class="mt-4 btn btn-success" type="submit" name="submit">Submit</button>
                 </form>
             </div>
         </div>

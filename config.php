@@ -69,9 +69,9 @@ function register($data)
     $pass = mysqli_real_escape_string($conn, $data["pass"]);
     $rpass = mysqli_real_escape_string($conn, $data["rpass"]);
 
-    $fname = $data["fname"];
-    $mname = $data["mname"];
-    $lname = $data["lname"];
+    $fname = ucfirst($data["fname"]);
+    $mname = ucfirst($data["mname"]);
+    $lname = ucfirst($data["lname"]);
     $jk = $data["jk"];
     $email = $data["email"];
 
@@ -81,33 +81,45 @@ function register($data)
 
     $pass = password_hash($pass, PASSWORD_DEFAULT);
 
-    $check = mysqli_query($conn, "SELECT * FROM user WHERE email= '$email' OR password= '$pass'");
+    $check = mysqli_query($conn, "SELECT * FROM user WHERE email= '$email' OR username= '$username'");
     if (mysqli_num_rows($check) > 0) {
-        echo "<script>alert('email sudah terdaftar')</script>";
+        echo "<script>alert(\"email sudah terdaftar\")</script>";
         $_SESSION['value_input'] = $data;
+
         // var_dump($_SESSION);
     } else {
         $query = mysqli_query($conn, "INSERT INTO user (id,username,password,first_name,mid_name,last_name,jk,email) 
         VALUES ('','$username','$pass','$fname','$mname','$lname','$jk','$email')");
         $_SESSION[] = '';
-        return $query;
+        echo '<script>alert("Pendaftaran Berhasil")</script>';
+        echo '<script>window.location.replace("login.php");</script>';
     }
 }
 
 function login($info)
 {
-
     $username = $info['username'];
     $pass = $info['pass'];
-
     global $conn;
     $query = mysqli_query($conn, "SELECT * FROM user WHERE email='$username' OR username='$username'");
     if (mysqli_num_rows($query) > 0) {
         $row = mysqli_fetch_assoc($query);
-        password_verify($pass, $row['pass']);
-        header("location: index.php");
+        $passcheckcond =  password_verify($pass, $row['password']) ? header('location: index.php') : ($pass == '');
+        echo $passcheckcond ? "<script>alert('Password tidak boleh kosong')</script>" : "<script>alert('Password salah')</script>";
+        $_SESSION['login'] = $info;
+    } else {
+        $row = mysqli_fetch_assoc($query);
+        if ($username == '' && $pass == '') {
+            echo "<script>alert('Email dan password harus diisi')</script>";
+            $_SESSION['login'] = $info;
+        } else if ($username != $row['username']) {
+            echo "<script>alert('Username atau Email tidak ditemukan')</script>";
+        } else if ($username != $row['username'] && $pass != $row['pass']) {
+            echo "<script>alert('Mohon untuk diisi dengan benar!')</script>";
+        }
     }
 }
+
 
 
 function search($data)
