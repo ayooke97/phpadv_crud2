@@ -32,7 +32,7 @@ if (isset($_POST['btn_search'])) {
 <body>
     <?php include_once 'config.php'; ?>
     <br>
-    <div class="d-flex align-items-center gap-3 mb-3">
+    <div class="d-flex align-items-center justify-content-between gap-3 mb-3">
         <a class="btn btn-dark" href="create.php">Create</a>
         <form action="" method="post">
             <select name="sort" id="sort">
@@ -47,6 +47,9 @@ if (isset($_POST['btn_search'])) {
             <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="search" name="search">
             <button class="btn btn-outline-success" type="submit" name="btn_search">Search</button>
         </form>
+        <a class="btn btn-primary" href="login.php">Login</a>
+        <a class="btn btn-warning" href="register.php">Register</a>
+
 
     </div>
     <table class="table table-dark table-striped">
@@ -56,7 +59,7 @@ if (isset($_POST['btn_search'])) {
                 <th scope="col">Judul Buku</th>
                 <th scope="col">Penerbit</th>
                 <th scope="col">Tahun Terbit</th>
-                <th scope="col">Sinopsis</th>
+                <th scope="col" class="w-50">Sinopsis</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
