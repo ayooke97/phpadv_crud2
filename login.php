@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php include_once 'config.php';
 
-<?php
-include_once 'config.php';
 if (isset($_POST['submit'])) {
     login($_POST);
 }
-if (isset($_SESSION['login'])) {
-    $login = $_SESSION['login'];
+if (isset($_SESSION['email'])) {
+    $email = $_SESSION['email'];
+    header('location: index.php');
 }
 ?>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -20,21 +20,23 @@ if (isset($_SESSION['login'])) {
 </head>
 
 <body>
+    <?php include_once 'navbar.php'; ?>
+
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <form action="" method="post" class="">
+                <form action="" method="post" class="mb-3">
                     <div class="form-group">
                         <label for="username">Username or Email</label>
-                        <input type="text" name="username" value="<?= isset($login['username']) ? $login['username'] : '' ?>" class="form-control">
+                        <input type="text" name="username" value="<?= isset($email['email']) ? $email['email'] : '' ?>" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="pass">Password</label>
                         <input type="password" name="pass" value="" class="form-control">
                     </div>
-
                     <button class="mt-4 btn btn-primary" type="submit" name="submit">Submit</button>
                 </form>
+                <a href="register.php">Belum daftar?</a>
             </div>
         </div>
     </div>

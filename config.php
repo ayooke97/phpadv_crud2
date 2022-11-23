@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $host = 'localhost';
 $db = 'perpustakaan';
 $username = 'root';
@@ -93,6 +93,7 @@ function register($data)
         $_SESSION[] = '';
         echo '<script>alert("Pendaftaran Berhasil")</script>';
         echo '<script>window.location.replace("login.php");</script>';
+        return $query;
     }
 }
 
@@ -104,23 +105,42 @@ function login($info)
     $query = mysqli_query($conn, "SELECT * FROM user WHERE email='$username' OR username='$username'");
     if (mysqli_num_rows($query) > 0) {
         $row = mysqli_fetch_assoc($query);
-        $passcheckcond =  password_verify($pass, $row['password']) ? header('location: index.php') : ($pass == '');
-        echo $passcheckcond ? "<script>alert('Password tidak boleh kosong')</script>" : "<script>alert('Password salah')</script>";
-        $_SESSION['login'] = $info;
+        $passcheckcond =  password_verify($pass, $row['password']);
+        if ($passcheckcond) {
+            $_SESSION['email'] = $row['email'];
+            header("location:index.php");
+        }
+        // var_dump($passcheckcond);
+        // die;
+        // $passcheckcond =  password_verify($pass, $row['password']) ? header('location: index.php') : ($pass == '');
+        // echo $passcheckcond ? "<script>alert('Password tidak boleh kosong')</script>" : "<script>alert('Password salah')</script>";
+        // $_SESSION['login'] = $info;
+
     } else {
         $row = mysqli_fetch_assoc($query);
+        $r_username = '';
+        if (isset($row['username'])) {
+            $r_username = $row['username'];
+        }
         if ($username == '' && $pass == '') {
             echo "<script>alert('Email dan password harus diisi')</script>";
             $_SESSION['login'] = $info;
-        } else if ($username != $row['username']) {
+        } else if ($username != $r_username) {
             echo "<script>alert('Username atau Email tidak ditemukan')</script>";
-        } else if ($username != $row['username'] && $pass != $row['pass']) {
+            $_SESSION['login'] = $info;
+        } else if ($username != $r_username && $pass != $row['pass']) {
             echo "<script>alert('Mohon untuk diisi dengan benar!')</script>";
+            $_SESSION['login'] = $info;
         }
     }
 }
 
-
+function getuser($email)
+{
+    global $conn;
+    $query = mysqli_query($conn, "SELECT * FROM user WHERE email='$email'");
+    return mysqli_fetch_assoc($query);
+}
 
 function search($data)
 {
@@ -128,4 +148,12 @@ function search($data)
     global $conn;
     $query = mysqli_query($conn, "SELECT * FROM buku WHERE penerbit LIKE '%{$data}%' OR sinopsis LIKE '%{$data}%' OR judul_buku LIKE '%{$data}%' OR id_buku LIKE '%{$data}%'");
     return $query;
+}
+
+function logout()
+{
+    $_SESSION[] = '';
+    session_destroy();
+    session_unset();
+    header('location:login.php');
 }

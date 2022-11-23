@@ -71,7 +71,7 @@ if (isset($value_input['jk'])) {
                             <label for="sc">Secret</label>
                         </div>
                     </div>
-
+                    <a href="./login.php">Sudah punya akun?</a>
                     <button class="mt-4 btn btn-success" type="submit" name="submit">Submit</button>
                 </form>
             </div>
