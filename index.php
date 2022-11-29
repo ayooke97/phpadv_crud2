@@ -110,7 +110,7 @@ if (isset($_POST['logout'])) {
         if (mysqli_num_rows($data) > 0) :
             foreach ($data as $d) :
                 $e_id_buku = base64_encode($d['id_buku']); ?>
-                <tr>
+                <tr class="align-middle">
                     <th scope="row">
                         <?= $i ?>
                     </th>
